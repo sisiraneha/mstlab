@@ -1,3 +1,4 @@
+[file name]: navbar.html
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -5,24 +6,22 @@
 </head>
 <style>
     nav {
-        height:fit-content;
         background-color: #333;
-        padding: 15px;
+        padding: 10px;
         display: flex;
-        flex-direction: row;
-        font-weight: bold;
-        justify-content: space-between;
-        align-items: center;
+        justify-content: flex-end;
         position: relative;
+    }
+
+    .nav-links {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
     }
 
     .nav-left, .nav-right {
         display: flex;
         gap: 20px;
-    }
-
-    .nav-right {
-        gap: 10px;
     }
 
     nav a {
@@ -35,46 +34,57 @@
     .hamburger {
         display: none;
         cursor: pointer;
-        flex-direction: column;
-        gap: 5px;
+        padding: 10px;
+        z-index: 1000;
     }
 
     .hamburger .bar {
         width: 25px;
         height: 3px;
         background-color: white;
+        margin: 4px 0;
+        transition: 0.4s;
     }
 
-    .nav-links {
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
+    .mobile-menu {
+        display: none;
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 70%;
+        background-color: #333;
+        padding: 20px;
+        z-index: 999;
+        transform: translateX(100%);
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .mobile-menu.active {
+        transform: translateX(0);
+    }
+
+    .mobile-menu .nav-left,
+    .mobile-menu .nav-right {
+        flex-direction: column;
+        gap: 25px;
+        margin-top: 40px;
     }
 
     @media (max-width: 480px) {
         .hamburger {
-            display: flex;
+            display: block;
+            position: fixed;
+            right: 15px;
+            top: 10px;
         }
 
         .nav-links {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
-            background-color: #333;
-            flex-direction: column;
             display: none;
-            padding: 15px;
         }
 
-        .nav-links.active {
-            display: flex;
-        }
-
-        .nav-left, .nav-right {
-            flex-direction: column;
-            gap: 15px;
-            text-align: center;
+        .mobile-menu.active {
+            display: block;
         }
 
         .nav-right a:not(:last-child) {
@@ -82,8 +92,9 @@
             padding-bottom: 10px;
         }
 
-        .nav-right a[href="/"] {
-            display: none;
+        nav {
+            padding: 0;
+            height: 50px;
         }
     }
 </style>
@@ -94,7 +105,8 @@
         <div class="bar"></div>
         <div class="bar"></div>
     </div>
-    <div class="nav-links" id="navLinks">
+    
+    <div class="nav-links">
         <div class="nav-left">
             <a href="Home.html" target="contentarea">Home</a>
             <a href="Home.html" target="contentarea">Services</a>
@@ -105,12 +117,24 @@
             <a href="Sign_up.html" target="contentarea">Sign Up</a>
         </div>
     </div>
+
+    <div class="mobile-menu">
+        <div class="nav-left">
+            <a href="Home.html" target="contentarea" onclick="toggleMenu()">Home</a>
+            <a href="Home.html" target="contentarea" onclick="toggleMenu()">Services</a>
+            <a href="Contact.html" target="contentarea" onclick="toggleMenu()">Contact</a>
+        </div>
+        <div class="nav-right">
+            <a href="Login_page.html" target="contentarea" onclick="toggleMenu()">Login</a>
+            <a href="Sign_up.html" target="contentarea" onclick="toggleMenu()">Sign Up</a>
+        </div>
+    </div>
 </nav>
 
 <script>
     function toggleMenu() {
-        const navLinks = document.getElementById('navLinks');
-        navLinks.classList.toggle('active');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        mobileMenu.classList.toggle('active');
     }
 </script>
 </body>
