@@ -105,6 +105,21 @@
             color: white;
         }
 
+        @media(max-width: 768px){
+            .navbar{
+                height:fit-content;
+            }
+            nav {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+            }
+            .nav-left, .nav-right {
+                display: flex;
+                flex-direction: column;
+            }
+        }
+
         @media (max-width: 480px) {
             .nav-left, .nav-right {
                 display: none;
@@ -157,7 +172,7 @@
         <nav>
             <div class="nav-left">
                 <a href="Home.html" target="contentarea">Home</a>
-                <a href="Home.html" target="contentarea">Services</a>
+                <a href="Training.html" target="contentarea">Training Plan</a>
                 <a href="Contact.html" target="contentarea">Contact</a>
             </div>
             <div class="nav-right">
@@ -175,7 +190,7 @@
     <div class="overlay" id="overlay">
         <a href="javascript:void(0)" class="close-btn" onclick="toggleMenu()">&times;</a>
         <a href="Home.html" target="contentarea" onclick="toggleMenu()">Home</a>
-        <a href="Home.html" target="contentarea" onclick="toggleMenu()">Services</a>
+        <a href="Training.html" target="contentarea" onclick="toggleMenu()">Training Plan</a>
         <a href="Contact.html" target="contentarea" onclick="toggleMenu()">Contact</a>
         <a href="Login_page.html" target="contentarea" onclick="toggleMenu()">Login</a>
         <a href="dashboard.html" target="contentarea" onclick="toggleMenu()">Dashboard</a>

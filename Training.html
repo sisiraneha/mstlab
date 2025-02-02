@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitLife - Personalized Fitness Solutions</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            width:100%;
+            text-align: center;
+            background-color: #333;
+        }
+
+        .personalized-plan {
+            width: 90%;
+            max-width: 800px;
+            margin: auto;
+            border-radius: 10px;
+            align-items: center;
+            height:fit-content;
+            padding: 80px 20px;
+            background-color: white;
+        }
+
+        .plan-form {
+            max-width: 800px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .personalized-plan  h1{
+            text-align: center;
+            color: black;
+            margin-bottom:2.5rem;
+        }
+
+        .personalized-plan  hr{
+            text-align: center;
+            color: black;
+            margin-bottom:2rem;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            color: white;
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        input, select {
+            text-align: center;
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .btn {
+            background-color: #ff4d4d;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .btn:hover{
+            background-color: #333;
+            transform:translatey(-2.5px);
+        }
+
+        @media (max-width: 768px) {
+            .plan-form {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="personalized-plan" id="plan">
+        <h1>Create Your Personal Training Plan</h1><hr>
+        <form class="plan-form">
+            <div class="form-group">
+                <label>Fitness Goal</label>
+                <select>
+                    <option>Weight Loss</option>
+                    <option>Muscle Building</option>
+                    <option>General Fitness</option>
+                    <option>Endurance Training</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Available Days/Week</label>
+                <select>
+                    <option>3 Days</option>
+                    <option>4 Days</option>
+                    <option>5 Days</option>
+                    <option>6 Days</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Preferred Workout Time</label>
+                <select>
+                    <option>Morning</option>
+                    <option>Afternoon</option>
+                    <option>Evening</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Equipment Available</label>
+                <select>
+                    <option>Home Equipment</option>
+                    <option>Gym Access</option>
+                    <option>No Equipment</option>
+                </select>
+            </div>
+
+            <button class="btn" type="submit">Generate Plan</button>
+        </form>
+    </section>
+</body>
+</html>
