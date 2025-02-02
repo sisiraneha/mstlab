@@ -24,19 +24,122 @@
             flex-direction: column;
         }
 
+        /* Navbar Styles */
         .navbar {
             background-color: #333;
             height: 15vh;
             flex-shrink: 0;
             transition: height 0.3s ease;
+            padding: 15px;
         }
 
-        .navbar iframe {
-            width: 100%;
+        nav {
             height: 100%;
-            border: none;
+            background-color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
+        .nav-left, .nav-right {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-left {
+            gap: 20px;
+        }
+
+        .nav-right {
+            gap: 10px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 5px 10px;
+            font-size: larger;
+        }
+
+        /* Mobile Menu Styles */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .hamburger .bar {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 5px 0;
+            transition: 0.4s;
+        }
+
+        .overlay {
+            height: 100vh;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #333;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .overlay a {
+            color: white;
+            text-decoration: none;
+            font-size: 2em;
+            padding: 15px;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 3em;
+            color: white;
+        }
+
+        @media (max-width: 480px) {
+            .nav-left, .nav-right {
+                display: none;
+            }
+
+            .hamburger {
+                display: block;
+                position: absolute;
+                right: 20px;
+                top: 20px;
+            }
+
+            .navbar {
+                height: 8vh;
+                padding: 5px 0;
+            }
+
+            .overlay.active {
+                display: flex;
+            }
+
+            .hamburger.active .bar:nth-child(1) {
+                transform: rotate(-45deg) translate(-5px, 6px);
+            }
+
+            .hamburger.active .bar:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active .bar:nth-child(3) {
+                transform: rotate(45deg) translate(-5px, -6px);
+            }
+        }
+
+        /* Content Styles */
         .content {
             flex: 1;
             min-height: 0;
@@ -47,27 +150,46 @@
             height: 100%;
             border: none;
         }
-
-        @media (max-width: 480px) {
-            .navbar {
-                height: 8vh; /* Reduced height for mobile */
-                padding: 5px 0; /* Added padding for better spacing */
-            }
-            
-            /* Optional: Make hamburger icon smaller */
-            .hamburger .bar {
-                width: 20px;
-                height: 2px;
-            }
-        }
     </style>
 </head>
 <body>
     <div class="navbar">
-        <iframe src="navbar.html"></iframe>
+        <nav>
+            <div class="nav-left">
+                <a href="Home.html" target="contentarea">Home</a>
+                <a href="Home.html" target="contentarea">Services</a>
+                <a href="Contact.html" target="contentarea">Contact</a>
+            </div>
+            <div class="nav-right">
+                <a href="Login_page.html" target="contentarea">Login</a>
+            </div>
+            <div class="hamburger" onclick="toggleMenu()">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+        </nav>
     </div>
+
+    <div class="overlay" id="overlay">
+        <a href="javascript:void(0)" class="close-btn" onclick="toggleMenu()">&times;</a>
+        <a href="Home.html" target="contentarea" onclick="toggleMenu()">Home</a>
+        <a href="Home.html" target="contentarea" onclick="toggleMenu()">Services</a>
+        <a href="Contact.html" target="contentarea" onclick="toggleMenu()">Contact</a>
+        <a href="Login_page.html" target="contentarea" onclick="toggleMenu()">Login</a>
+    </div>
+
     <div class="content">
         <iframe src="Home.html" name="contentarea"></iframe>
     </div>
+
+    <script>
+        function toggleMenu() {
+            const overlay = document.getElementById('overlay');
+            const hamburger = document.querySelector('.hamburger');
+            overlay.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        }
+    </script>
 </body>
 </html>
