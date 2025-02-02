@@ -3,7 +3,48 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Anchor</title>
 </head>
-<link rel="stylesheet" href="Webpage.css">
+<style>
+    nav {
+        height:fit-content;
+        background-color: #333;
+        padding: 15px;
+        display: flex;
+        flex-direction: row;
+        font-weight: bold;
+        justify-content: space-between;
+    }
+
+    .nav-left {
+        margin:10px;
+        gap: 20px;
+    }
+
+    .nav-right {
+        gap: 10px;
+    }
+
+    nav a {
+        color: white;
+        text-decoration: none;
+        padding: 5px 10px;
+        font-size: larger;
+    }
+
+    @media (max-width: 480px) {
+        nav {
+            flex-direction: column;
+            text-align: center;
+        }
+        nav a {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .slider-container {
+            height: 400px;
+        }
+    }
+</style>
 <body bgcolor="#333">
 <nav>
     <div class="nav-left">
