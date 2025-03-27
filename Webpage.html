@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -165,6 +166,10 @@
             height: 100%;
             border: none;
         }
+
+        .hidden {
+            display: none !important;
+        }
     </style>
 </head>
 <body>
@@ -176,8 +181,9 @@
                 <a href="Contact.html" target="contentarea">Contact</a>
             </div>
             <div class="nav-right">
-                <a href="Login_page.html" target="contentarea">Login</a>
-                <a href="dashboard.html" target="contentarea">Dashboard</a>
+                <a href="Login_page.html" target="contentarea" id="loginButton">Login</a>
+                <a href="dashboard.html" target="contentarea" id="dashboardButton" class="hidden">Dashboard</a>
+                <a href="#" id="logoutButton" class="hidden" onclick="logout()">Logout</a>
             </div>
             <div class="hamburger" onclick="toggleMenu()">
                 <div class="bar"></div>
@@ -192,8 +198,9 @@
         <a href="Home.html" target="contentarea" onclick="toggleMenu()">Home</a>
         <a href="Training.html" target="contentarea" onclick="toggleMenu()">Training Plan</a>
         <a href="Contact.html" target="contentarea" onclick="toggleMenu()">Contact</a>
-        <a href="Login_page.html" target="contentarea" onclick="toggleMenu()">Login</a>
-        <a href="dashboard.html" target="contentarea" onclick="toggleMenu()">Dashboard</a>
+        <a href="Login_page.html" target="contentarea" id="mobileLoginButton" onclick="toggleMenu()">Login</a>
+        <a href="dashboard.html" target="contentarea" id="mobileDashboardButton" class="hidden" onclick="toggleMenu()">Dashboard</a>
+        <a href="#" id="mobileLogoutButton" class="hidden" onclick="logout()">Logout</a>
     </div>
 
     <div class="content">
@@ -207,6 +214,38 @@
             overlay.classList.toggle('active');
             hamburger.classList.toggle('active');
         }
+
+        function logout() {
+            localStorage.removeItem("loggedIn");
+            updateNavigation();
+            document.querySelector('iframe[name="contentarea"]').src = "Login_page.html";
+        }
+
+        function updateNavigation() {
+            const isLoggedIn = localStorage.getItem("loggedIn") === "true";
+            
+            // Desktop navigation
+            document.getElementById('loginButton').classList.toggle('hidden', isLoggedIn);
+            document.getElementById('dashboardButton').classList.toggle('hidden', !isLoggedIn);
+            document.getElementById('logoutButton').classList.toggle('hidden', !isLoggedIn);
+            
+            // Mobile navigation
+            document.getElementById('mobileLoginButton').classList.toggle('hidden', isLoggedIn);
+            document.getElementById('mobileDashboardButton').classList.toggle('hidden', !isLoggedIn);
+            document.getElementById('mobileLogoutButton').classList.toggle('hidden', !isLoggedIn);
+        }
+
+        // Check login status when the page loads
+        document.addEventListener("DOMContentLoaded", function() {
+            updateNavigation();
+        });
+
+        // Listen for storage events to handle updates across tabs
+        window.addEventListener('storage', function(e) {
+            if (e.key === 'loggedIn') {
+                updateNavigation();
+            }
+        });
     </script>
 </body>
 </html>
