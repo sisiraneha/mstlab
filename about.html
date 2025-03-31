@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - FITRACKER</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #333;
+            color: #ffffff;
+        }
+        .header {
+            background: url('https://images.pexels.com/photos/841130/pexels-photo-841130.jpeg') center/cover no-repeat;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2.5rem;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+        }
+        .container {
+            max-width: 1000px;
+            margin: 50px auto;
+            padding: 20px;
+            text-align: center;
+        }
+        h2 {
+            color: #ff4d4d;
+            font-size: 2rem;
+        }
+        p {
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+        .highlight {
+            font-weight: bold;
+            color: #ff4d4d;
+        }
+        .cta {
+            margin-top: 20px;
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #ff4d4d;
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+        .cta:hover {
+            background-color: #333;
+        }
+        @media (max-width: 1024px) {
+            .header {
+                height: 220px;
+                font-size: 1.8rem;
+            }
+            .container {
+                max-width: 92%;
+            }
+            h2 {
+                font-size: 1.6rem;
+            }
+            p {
+                font-size: 1rem;
+            }
+        }
+        @media (max-width: 768px) {
+            .header {
+                font-size: 1.5rem;
+                height: 200px;
+            }
+            .container {
+                max-width: 95%;
+            }
+            h2 {
+                font-size: 1.4rem;
+            }
+            p {
+                font-size: 0.9rem;
+            }
+            .cta {
+                font-size: 0.9rem;
+                padding: 10px 20px;
+            }
+        }
+        @media (max-width: 480px) {
+            .header {
+                height: 180px;
+                font-size: 1.2rem;
+                padding: 15px;
+            }
+            .container {
+                max-width: 98%;
+            }
+            h2 {
+                font-size: 1.2rem;
+            }
+            p {
+                font-size: 0.85rem;
+            }
+            .cta {
+                font-size: 0.85rem;
+                padding: 8px 18px;
+            }
+        }
+        @media (max-width: 320px) {
+            .header {
+                height: 150px;
+                font-size: 1rem;
+                padding: 10px;
+            }
+            h2 {
+                font-size: 1rem;
+            }
+            p {
+                font-size: 0.8rem;
+            }
+            .cta {
+                font-size: 0.8rem;
+                padding: 6px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">Welcome to FITRACKER</div>
+    <div class="container">
+        <h2>Your Journey Starts Here</h2>
+        <p>At <span class="highlight">FITRACKER</span>, we believe that fitness is more than just a workout—it’s a lifestyle. Our mission is to help you take control of your fitness journey with real-time tracking, expert insights, and tailored workout plans.</p>
+        <p>Whether you're just starting or pushing for peak performance, we provide the tools, support, and motivation you need to reach your goals.</p>
+        <p>With personalized guidance, progress tracking, and a strong community, every step forward is a step toward your strongest self.</p>
+        <a href="#" class="cta">Join FITRACKER Today</a>
+    </div>
+</body>
+</html>

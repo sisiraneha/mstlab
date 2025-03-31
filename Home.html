@@ -22,9 +22,11 @@
                 height: 100vh;
                 position: relative;
                 display: flex;
+                flex-direction: column;
                 align-items: center;
                 justify-content: center;
                 text-align: center;
+                gap: 20px;
             }
 
             .slider-container {
@@ -47,10 +49,7 @@
             }
 
             .carousel-title {
-                position: absolute;
-                top: 10%;
-                left: 50%;
-                transform: translateX(-50%);
+                position: relative;
                 z-index: 2;
                 width: 90%;
             }
@@ -84,16 +83,13 @@
             }
 
             .features {
-                position: absolute;
-                bottom: 5%;
-                left: 50%;
-                transform: translateX(-50%);
+                position: relative;
                 display: flex;
-                justify-content: space-between;
                 flex-wrap: wrap;
+                justify-content: center;
                 gap: 20px;
                 width: 90%;
-                max-width: 1200px;
+                max-width: 800px;
                 padding: 20px;
                 z-index: 3;
             }
@@ -134,23 +130,13 @@
                 100% { transform: translateX(0); }
             }
 
-            @media (max-width: 1024px) {
-                .features {
-                    bottom: 8%;
-                }
-            }
-
             @media (max-width: 768px) {
-                .carousel-title h1 {
-                    font-size: 2rem;
-                }
                 .features {
                     flex-direction: column;
                     align-items: center;
-                    bottom: 5%;
                 }
                 .feature-card {
-                    width: 100%;
+                    flex: 1 1 250px;
                     max-width: 90%;
                 }
             }
@@ -160,11 +146,6 @@
         <header>
             <div class="slider-container">
                 <div class="overlay"></div>
-                <div class="carousel-title">
-                    <h1>FITRACKER</h1>
-                    <br><hr><br>
-                    <p>Transform your life. Real results.</p>
-                </div>
                 <div class="slider">
                     <div class="slide">
                         <img src="https://images.pexels.com/photos/841130/pexels-photo-841130.jpeg" alt="Workout 1">
@@ -180,7 +161,12 @@
                     </div>
                 </div>
             </div>
-            <section class="features">
+            <div class="carousel-title">
+                <h1>FITRACKER</h1>
+                <br><hr><br>
+                <p>Transform your life. Real results.</p>
+            </div>
+            <div class="features">
                 <div class="feature-card">
                     <h3>Track Your Progress</h3>
                     <hr>
@@ -201,25 +187,25 @@
                     <hr>
                     <p>Book sessions and chat with professional trainers.</p>
                 </div>
-            </section>
+            </div>
         </header>
         <script>
             document.addEventListener("DOMContentLoaded", () => {
-            const featureCards = document.querySelectorAll(".feature-card");
-            
-            featureCards.forEach(card => {
-                card.addEventListener("click", () => {
-                    const isLoggedIn = localStorage.getItem("loggedIn") === "true";
-                    
-                    if (!isLoggedIn) {
-                        alert("You must be logged in to access this feature.");
-                        window.location.href = "login_page.html"; 
-                    } else {
-                        window.location.href = "dashboard.html";
-                    }
+                const featureCards = document.querySelectorAll(".feature-card");
+                
+                featureCards.forEach(card => {
+                    card.addEventListener("click", () => {
+                        const isLoggedIn = localStorage.getItem("loggedIn") === "true";
+                        
+                        if (!isLoggedIn) {
+                            alert("You must be logged in to access this feature.");
+                            window.location.href = "login_page.html"; 
+                        } else {
+                            window.location.href = "dashboard.html";
+                        }
+                    });
                 });
             });
-        });
         </script>
     </body>
 </html>
