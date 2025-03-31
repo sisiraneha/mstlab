@@ -40,11 +40,13 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: relative;
         }
 
         .nav-left, .nav-right {
             display: flex;
             align-items: center;
+            z-index: 1;
         }
 
         .nav-left {
@@ -62,11 +64,28 @@
             font-size: larger;
         }
 
+        /* Logo Styles */
+        .logo-container {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2;
+        }
+
+        .logo {
+            height: 60px;
+            width: auto;
+        }
+
         /* Mobile Menu Styles */
         .hamburger {
             display: none;
             cursor: pointer;
             padding: 10px;
+            z-index: 3;
         }
 
         .hamburger .bar {
@@ -119,6 +138,11 @@
                 display: flex;
                 flex-direction: column;
             }
+            .logo-container {
+                position: relative;
+                order: -1;
+                margin-bottom: 10px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -153,6 +177,18 @@
             .hamburger.active .bar:nth-child(3) {
                 transform: rotate(45deg) translate(-5px, -6px);
             }
+            
+            .logo-container {
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+                top: 50%;
+                margin-top: -30px;
+            }
+            
+            .logo {
+                height: 40px;
+            }
         }
 
         /* Content Styles */
@@ -180,6 +216,11 @@
                 <a href="about.html" target="contentarea">About us</a>
                 <a href="Contact.html" target="contentarea">Contact</a>
             </div>
+            
+            <div class="logo-container">
+                <img src="https://ik.imagekit.io/Marco/Screenshot_2025-03-31_185457-removebg-preview.png?updatedAt=1743428015924" alt="FITRACKER Logo" class="logo">
+            </div>
+            
             <div class="nav-right">
                 <a href="Login_page.html" target="contentarea" id="loginButton">Login</a>
                 <a href="dashboard.html" target="contentarea" id="dashboardButton" class="hidden">Dashboard</a>
