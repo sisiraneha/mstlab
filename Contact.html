@@ -103,7 +103,7 @@
 <body>
     <div class="container">
         <h1>Contact Us</h1>
-        <form action="submit_contact_form.php" method="post">
+        <form action="#" method="post">
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" required>
 
@@ -116,5 +116,20 @@
             <input type="submit" value="Submit">
         </form>
     </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const form = document.querySelector("form");
+    
+            form.addEventListener("submit", function (event) {
+                const isLoggedIn = localStorage.getItem("loggedIn") === "true";
+    
+                if (!isLoggedIn) {
+                    event.preventDefault(); // Prevent form submission
+                    alert("You must be logged in to submit the form!");
+                    window.location.href = "Login_page.html"; // Redirect to login page
+                }
+            });
+        });
+    </script>    
 </body>
 </html>

@@ -287,6 +287,22 @@
                 updateNavigation();
             }
         });
+
+        document.addEventListener("DOMContentLoaded", function() {
+            updateNavigation();
+
+            // Retrieve the last viewed page from localStorage
+            const lastPage = localStorage.getItem("lastPage") || "Home.html";
+            document.querySelector('iframe[name="contentarea"]').src = lastPage;
+
+            // Update the stored page whenever a new link is clicked
+            document.querySelectorAll('a[target="contentarea"]').forEach(link => {
+                link.addEventListener("click", function(event) {
+                    localStorage.setItem("lastPage", this.getAttribute("href"));
+                });
+            });
+        });
+
     </script>
 </body>
 </html>

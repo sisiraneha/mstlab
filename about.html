@@ -137,5 +137,22 @@
         <p>With personalized guidance, progress tracking, and a strong community, every step forward is a step toward your strongest self.</p>
         <a href="#" class="cta">Join FITRACKER Today</a>
     </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const ctaButton = document.querySelector(".cta");
+
+            ctaButton.addEventListener("click", function (event) {
+                event.preventDefault(); // Prevent default anchor behavior
+                
+                const isLoggedIn = localStorage.getItem("loggedIn") === "true";
+
+                if (isLoggedIn) {
+                    window.location.href = "Home.html"; 
+                } else {
+                    window.location.href = "Login_page.html"; 
+                }
+            });
+        });
+    </script>
 </body>
 </html>
