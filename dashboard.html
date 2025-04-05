@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fitness Dashboard</title>
     <style>
         * {
@@ -151,6 +151,45 @@
             width: 100%;
         }
 
+        /* Styled input fields */
+        .card input[type="number"] {
+            padding: 6px 10px;
+            border: 1px solid #ff4d4d;
+            border-radius: 20px;
+            font-size: 14px;
+            color: #333;
+            width: 80%;
+            max-width: 120px;
+            background-color: #ffffff;
+            outline: none;
+            margin-bottom: 6px;
+            transition: border 0.3s, box-shadow 0.3s;
+        }
+
+        .card input[type="number"]:focus {
+            border-color: #ff1a1a;
+            box-shadow: 0 0 5px rgba(255, 77, 77, 0.6);
+        }
+
+        /* Sidebar button for Fitness Hub */
+        .side-panel a button {
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        .side-panel a button:hover {
+            background-color: #333;
+            box-shadow: 0 0 8px rgba(255, 77, 77, 0.5);
+        }
+
+
         @media (min-width: 768px) {
             body {
                 flex-direction: row;
@@ -217,6 +256,10 @@
             <div class="profile-item"><strong>Age:</strong> 29</div>
             <div class="profile-item"><strong>Height:</strong> 5'9"</div>
         </div>
+        <hr style="margin:10px 0; border-color:rgba(255,255,255,0.3);">
+        <a href="Fitness_hub.html" style="color:white; text-decoration:none; font-weight:bold;">
+            <button style="width:100%; margin-top:5px;">Fitness Hub</button>
+        </a>
     </div>
 
     <div class="main-content">
@@ -226,38 +269,70 @@
         </header>
 
         <div class="dashboard">
+            <!-- Water -->
             <div class="card">
                 <h3>Water Consumed</h3>
-                <p>2.5 L</p>
-                <button>Update</button>
+                <p id="waterDisplay">2.5 L</p>
+                <input type="number" id="waterInput" placeholder="Liters" step="0.1">
+                <button onclick="updateValue('water')">Update</button>
             </div>
+
+            <!-- Calories Consumed -->
             <div class="card">
                 <h3>Calories Consumed</h3>
-                <p>1800 kcal</p>
-                <button>Details</button>
+                <p id="caloriesInDisplay">1800 kcal</p>
+                <input type="number" id="caloriesInInput" placeholder="kcal">
+                <button onclick="updateValue('caloriesIn')">Update</button>
             </div>
+
+            <!-- Calories Burned -->
             <div class="card">
                 <h3>Calories Burned</h3>
-                <p>500 kcal</p>
-                <button>Track</button>
+                <p id="caloriesOutDisplay">500 kcal</p>
+                <input type="number" id="caloriesOutInput" placeholder="kcal">
+                <button onclick="updateValue('caloriesOut')">Update</button>
             </div>
-            <div class="card">
-                <h3>Fitness Hub</h3>
-                <p>5 Sessions</p>
-                <a href="Fitness_hub.html" target="contentarea"><button>Explore</button></a>
-            </div>
+
+            <!-- Fitness Score -->
             <div class="card">
                 <h3>Fitness Score</h3>
-                <p>8.2/10</p>
-                <button>Analyze</button>
-            </div>
-            <div class="card">
-                <h3>Heartbeat</h3>
-                <p>78 bpm</p>
-                <button>Check</button>
+                <p id="fitnessScore">8.2/10</p>
+                <button onclick="calculateFitnessScore()">Recalculate</button>
             </div>
         </div>
     </div>
-    
+
+    <script>
+        function updateValue(type) {
+            let input, display;
+            if (type === 'water') {
+                input = document.getElementById('waterInput').value;
+                if (input) document.getElementById('waterDisplay').innerText = input + ' L';
+            }
+            if (type === 'caloriesIn') {
+                input = document.getElementById('caloriesInInput').value;
+                if (input) document.getElementById('caloriesInDisplay').innerText = input + ' kcal';
+            }
+            if (type === 'caloriesOut') {
+                input = document.getElementById('caloriesOutInput').value;
+                if (input) document.getElementById('caloriesOutDisplay').innerText = input + ' kcal';
+            }
+        }
+
+        function calculateFitnessScore() {
+            const water = parseFloat(document.getElementById('waterDisplay').innerText) || 0;
+            const calIn = parseFloat(document.getElementById('caloriesInDisplay').innerText) || 0;
+            const calOut = parseFloat(document.getElementById('caloriesOutDisplay').innerText) || 0;
+
+            // Simple score formula: normalized value out of 10
+            const waterScore = Math.min((water / 3) * 3, 3.3); // Max 3.3 for 3L
+            const calorieBalanceScore = Math.min((calOut / calIn) * 3.3, 3.3); // Max 3.3
+            const balanceBonus = calOut > calIn ? 3.4 : 1.6;
+
+            const total = (waterScore + calorieBalanceScore + balanceBonus).toFixed(1);
+
+            document.getElementById('fitnessScore').innerText = `${Math.min(total, 10)}/10`;
+        }
+    </script>
 </body>
 </html>
